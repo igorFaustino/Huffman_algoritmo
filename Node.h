@@ -16,11 +16,17 @@ public:
     	Node* getRight();
     	void setRight(Node*);
     	void setLeft(Node*);
-	bool compare(Node* first, Node* second);
+	bool compare(const Node* first, const Node* second);
+	void print();
+	bool operator()(Node const * lhs, Node const * rhs) {return lhs->prob < rhs->prob;};
+
 	
 private:
 	char c;
 	int prob;
+
+	Node* left;
+	Node* right;
 };
 
 #endif

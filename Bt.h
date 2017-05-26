@@ -3,6 +3,7 @@
 
 #include "Node.h"
 #include <list>
+#include <iostream>
 
 using namespace std;
 
@@ -12,8 +13,10 @@ public:
 	Bt();
 	~Bt();
 
-	void insert(list<Node>* list);
+	void insert(list<Node*>* nodeList);
+	bool compare(const Node* a, const Node* b);
 private:
 	Node* root;
 };
+
 #endif

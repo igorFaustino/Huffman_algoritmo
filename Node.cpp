@@ -25,16 +25,11 @@ int Node::getProb(){
 }
 
 void Node::setC(char c){
-	c = c;
+	this->c = c;
 }
 
 void Node::setProb(int prob){
-	prob = prob;
-}
-
-void Node::setData(int d)
-{
-    data = d;
+	this->prob = prob;
 }
 
 Node* Node::getLeft()
@@ -55,4 +50,9 @@ void Node::setRight(Node *node)
 void Node::setLeft(Node *node)
 {
     left = node;
+}
+
+void Node::print(){
+	cout << "Prob: " << this->prob << endl;
+	cout << "c: " << this->c << endl;
 }
