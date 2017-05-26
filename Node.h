@@ -12,6 +12,7 @@ public:
 	int getProb();
 	void setC(char c);
 	void setProb(int prob);
+	bool compare(Node* first, Node* second);
 	
 private:
 	char c;
