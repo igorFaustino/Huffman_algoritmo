@@ -7,8 +7,8 @@ Node::Node(int prob,char c){
 	{
 		left  = NULL;
 		right = NULL;
-		word = c;
-		prob = prob;
+		this->c = c;
+		this->prob = prob;
 	}	
 }
 
