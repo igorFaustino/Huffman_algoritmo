@@ -18,12 +18,14 @@ public:
     void setLeft(Node*);
 	bool compare(const Node* first, const Node* second);
 	void print();
-	bool operator()(Node const * lhs, Node const * rhs) {return lhs->prob < rhs->prob;};
+	int getCod();
+	void setCod(int value);
 
 	
 private:
 	char c;
 	int prob;
+	int cod;
 
 	Node* left;
 	Node* right;

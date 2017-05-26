@@ -9,6 +9,7 @@ Node::Node(int prob,char c){
 		right = NULL;
 		this->c = c;
 		this->prob = prob;
+		this->cod = -1;
 	}	
 }
 
@@ -55,4 +56,12 @@ void Node::setLeft(Node *node)
 void Node::print(){
 	cout << "Prob: " << this->prob << endl;
 	cout << "c: " << this->c << endl;
+}
+
+int Node::getCod(){
+	return cod;
+}
+
+void Node::setCod(int value){
+	this->cod = value;
 }

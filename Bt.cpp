@@ -9,8 +9,10 @@ void Bt::insert(list<Node*>* nodeList){
 };
 
 void Bt::walk(Node *node){
-    if (node!=NULL){
+    if (node->getLeft()){
         walk(node->getLeft());
+    }
+    if (node->getRight()){
         walk(node->getRight());
     }
 }
