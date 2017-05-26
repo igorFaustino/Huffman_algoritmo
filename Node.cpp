@@ -17,7 +17,7 @@ Node::~Node(){
 }
 
 char Node::getC(){
-	return word;
+	return c;
 }
 
 int Node::getProb(){
@@ -25,11 +25,11 @@ int Node::getProb(){
 }
 
 void Node::setC(char c){
-	word = c;
+	c = c;
 }
 
 void Node::setProb(int prob){
-	word = c;
+	c = c;
 }
 
 void Node::setData(int d)
