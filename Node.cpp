@@ -29,7 +29,7 @@ void Node::setC(char c){
 }
 
 void Node::setProb(int prob){
-	c = c;
+	prob = prob;
 }
 
 void Node::setData(int d)
