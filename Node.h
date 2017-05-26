@@ -13,9 +13,9 @@ public:
 	void setC(char c);
 	void setProb(int prob);
 	Node* getLeft();
-    	Node* getRight();
-    	void setRight(Node*);
-    	void setLeft(Node*);
+   	Node* getRight();
+   	void setRight(Node*);
+    void setLeft(Node*);
 	bool compare(const Node* first, const Node* second);
 	void print();
 	bool operator()(Node const * lhs, Node const * rhs) {return lhs->prob < rhs->prob;};
