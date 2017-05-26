@@ -7,7 +7,7 @@ class Node
 {
 public:
 	Node(int prob, char c);
-	~Node();
+	virtual ~Node();
 	char getC();
 	int getProb();
 	void setC(char c);

@@ -8,7 +8,7 @@ Node::Node(int prob,char c){
 		left  = NULL;
 		right = NULL;
 		word = c;
-		probability = prob;
+		prob = prob;
 	}	
 }
 
@@ -21,7 +21,38 @@ char Node::getC(){
 }
 
 int Node::getProb(){
-	return probability;
+	return prob;
 }
 
-void
+void Node::setC(char c){
+	word = c;
+}
+
+void Node::setProb(int prob){
+	word = c;
+}
+
+void Node::setData(int d)
+{
+    data = d;
+}
+
+Node* Node::getLeft()
+{
+    return left;
+}
+
+Node* Node::getRight()
+{
+    return right;
+}
+
+void Node::setRight(Node *node)
+{
+    right = node;
+}
+
+void Node::setLeft(Node *node)
+{
+    left = node;
+}
