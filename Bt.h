@@ -15,8 +15,10 @@ public:
 
 	void insert(list<Node*>* nodeList);
 	bool compare(const Node* a, const Node* b);
+	void walk();
 private:
 	Node* root;
+	void walk(Node* node);
 };
 
 #endif
