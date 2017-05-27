@@ -5,45 +5,29 @@ Bt::Bt(){
 	root = NULL;
 }
 
-void Bt::insert(vector<Node*> v){
-	Node* n1;
-	Node* n2;
-	Node* x;
-	while (v.size() > 1){
-		sort(v.begin(), v.end(), compare);
-		n1 = v[0];
-		n2 = v[1];
-		v.erase(v.begin(), v.begin()+1);
-		x = new Node(n1->getProb() + n2->getProb());
-		x->setLeft(n1);
-		x->setRight(n2);
-		v.push_back(x);
-	}
-	root = v[0];
+void Bt::insert(list<Node*>* nodeList){
+	nodeList->sort();
 };
 
-void Bt::setCod(Node *node, string cod){
-    if(!node->getLeft() && node->getRight()){
-    	node->setCod(cod);
-    	return;
-    }
+void Bt::walk(Node *node){
     if (node->getLeft()){
-        setCod(node->getLeft(), cod + "0");
+        walk(node->getLeft());
     }
     if (node->getRight()){
-        setCod(node->getRight(), cod + "1");
+        walk(node->getRight());
     }
 }
 
-void Bt::setCod(){
-	if (root->getLeft()){
-        setCod(root, "0");
+vector<node*> Bt::catchLeaf(Node *node,vector<node*> *a){
+    if(node->getleft()==NULL && node->getright()=NULL){
+    	a->push_back(node);
+    	return *a;
     }
-    if (root->getRight()){
-        setCod(root, "1");
-    }
+     catchLeaf(node->getLeft(),*a);
+     catchLeaf(node->getLeft(),*a);
 }
 
-bool Bt::compare(Node* a, Node* b){
-		return a->getProb() < b->getProb();
+
+void Bt::walk(){
+	walk(root);
 }
