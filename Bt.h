@@ -5,6 +5,7 @@
 #include <list>
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -14,14 +15,14 @@ public:
 	Bt();
 	~Bt();
 
-	void insert(list<Node*>* nodeList);
-	bool compare(const Node* a, const Node* b);
-	void walk();
-	vector<node*> catchLeaf(Node *node,vector<node*> *a){
+	void insert(vector<Node*> v);
+	void setCod();
+	vector<Node*> catchLeaf(Node *node,vector<Node*> a);
 private:
 	Node* root;
-	void walk(Node* node);
+	void setCod(Node* node, string cod);
 
+	static bool compare(Node* a, Node* b);
 };
 
 #endif
