@@ -10,6 +10,7 @@ void Bt::insert(list<Node*>* nodeList){
 };
 
 void Bt::walk(Node *node){
+   
     if (node->getLeft()){
         walk(node->getLeft());
     }
@@ -19,12 +20,15 @@ void Bt::walk(Node *node){
 }
 
 vector<node*> Bt::catchLeaf(Node *node,vector<node*> *a){
-    if(node->getleft()==NULL && node->getright()=NULL){
-    	a->push_back(node);
-    	return *a;
-    }
+   if(node!=NULL){
+    	if(node->getleft()==NULL && node->getRight()=NULL){
+    		a->push_back(node);
+    			return *a;
+    	}
+     
      catchLeaf(node->getLeft(),*a);
-     catchLeaf(node->getLeft(),*a);
+     catchLeaf(node->getRight(),*a);
+ 	}
 }
 
 
