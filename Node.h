@@ -1,12 +1,13 @@
 #ifndef NODE
 #define NODE 
+#include <iostream>
 
 using namespace std;
 
 class Node
 {
 public:
-	Node(int prob, char c);
+	Node(int prob);
 	virtual ~Node();
 	char getC();
 	int getProb();
@@ -18,14 +19,14 @@ public:
     void setLeft(Node*);
 	bool compare(const Node* first, const Node* second);
 	void print();
-	int getCod();
-	void setCod(int value);
+	string getCod();
+	void setCod(string value);
 
 	
 private:
 	char c;
 	int prob;
-	int cod;
+	string cod;
 
 	Node* left;
 	Node* right;

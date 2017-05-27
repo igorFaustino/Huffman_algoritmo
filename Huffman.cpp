@@ -5,7 +5,8 @@ Huffman::Huffman(char* file){
 	outFile.open("outFile.txt");
 
 	for (int i = 0; i < 256; i++){
-		alfabeto.push_back(new Node(0, 1));
+		alfabeto.push_back(new Node(0));
+		alfabeto.back()->setC(i);
 	}
 }
 

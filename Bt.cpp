@@ -1,22 +1,49 @@
 #include "Bt.h"
 
+
 Bt::Bt(){
 	root = NULL;
 }
 
-void Bt::insert(list<Node*>* nodeList){
-	nodeList->sort();
+void Bt::insert(vector<Node*> v){
+	Node* n1;
+	Node* n2;
+	Node* x;
+	while (v.size() > 1){
+		sort(v.begin(), v.end(), compare);
+		n1 = v[0];
+		n2 = v[1];
+		v.erase(v.begin(), v.begin()+1);
+		x = new Node(n1->getProb() + n2->getProb());
+		x->setLeft(n1);
+		x->setRight(n2);
+		v.push_back(x);
+	}
+	root = v[0];
 };
 
-void Bt::walk(Node *node){
+void Bt::setCod(Node *node, string cod){
+    if(!node->getLeft() && node->getRight()){
+    	node->setCod(cod);
+    	return;
+    }
     if (node->getLeft()){
-        walk(node->getLeft());
+        setCod(node->getLeft(), cod + "0");
     }
     if (node->getRight()){
-        walk(node->getRight());
+        setCod(node->getRight(), cod + "1");
     }
 }
 
-void Bt::walk(){
-	walk(root);
+void Bt::setCod(){
+	if (root->getLeft()){
+        setCod(root, "0");
+    }
+    if (root->getRight()){
+        setCod(root, "1");
+    }
+}
+
+bool Bt::compare(Node* a, Node* b){
+		return a->getProb() < b->getProb();
 }

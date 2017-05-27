@@ -3,11 +3,11 @@
 
 using namespace std;
 
-Node::Node(int prob,char c){
+Node::Node(int prob){
 	{
 		left  = NULL;
 		right = NULL;
-		this->c = c;
+		// this->c = ' ';
 		this->prob = prob;
 		this->cod = -1;
 	}	
@@ -58,10 +58,10 @@ void Node::print(){
 	cout << "c: " << this->c << endl;
 }
 
-int Node::getCod(){
+string Node::getCod(){
 	return cod;
 }
 
-void Node::setCod(int value){
+void Node::setCod(string value){
 	this->cod = value;
 }
