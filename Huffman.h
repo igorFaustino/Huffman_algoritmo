@@ -14,11 +14,17 @@ public:
 	Huffman(char* file);
 	~Huffman();
 	void probability();
+	void makeTree();
+	void makeDicionario();
+	void compress();
+	void uncompress();
 
 private:
 	ifstream inFile;
 	ofstream outFile;
-	vector<Node*> alfabeto;
+	vector<Node*>* alfabeto;
+	vector<Node*>* dicionario;
+	Bt* tree;
 	
 };
 
