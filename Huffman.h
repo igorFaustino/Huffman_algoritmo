@@ -20,8 +20,10 @@ private:
 	void makeDictionary();
 	void makeTree();
 	void probability();
-	void Huffman::SaveDictionary();
+	void saveDictionary();
+	void compressTexto();
 	ifstream inFile;
+	ifstream inFile_read;
 	ofstream outFile;
 	vector<Node*>* alfabeto;
 	vector<Node*>* dicionario;
