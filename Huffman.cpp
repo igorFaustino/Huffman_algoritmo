@@ -1,10 +1,9 @@
 #include "Huffman.h"
 
-Huffman::Huffman(string file){
-	inFile.open(file.c_str());
-	inFile_read.open(file.c_str());
-	outFile.open("outFile.txt");
-
+Huffman::Huffman(string in, string out){
+	inFile.open(in.c_str());
+	inFile_read.open(in.c_str());
+	outFile.open(out.c_str());
 	alfabeto = new vector<Node*>;
 	dicionario = new vector<Node*>;
 	tree = new Bt();
@@ -16,6 +15,7 @@ Huffman::Huffman(string file){
 
 Huffman::~Huffman(){
 	inFile.close();
+	inFile_read.close();
 	outFile.close();
 }
 
@@ -44,11 +44,15 @@ void Huffman::makeDictionary(){
 }
 
 void Huffman::compress(){
-	probability();
-	makeTree();
-	makeDictionary();
-	saveDictionary();
-	compressTexto();
+	if (testFile()){
+		probability();
+		makeTree();
+		makeDictionary();
+		saveDictionary();
+		compressTexto();
+	} else {
+		cout << "uso: huffman.exe parametro arquivoEntrada.txt arquivoSaida.txt" << endl;
+	}
 }
 
 void Huffman::saveDictionary(){
@@ -73,4 +77,58 @@ void Huffman::compressTexto(){
 		outFile.write((*dicionario)[i]->getCod().c_str(), (*dicionario)[i]->getCod().size());
 	}
 	// outFile.close();
+}
+
+void Huffman::dictionaryFromFile(){
+	string str, cod, c;
+	char aux;
+	getline(inFile, str);
+	while (str != "--" and !inFile.eof()){
+		cod = str;
+		getline(inFile, str);
+		c = str;
+		dicionario->push_back(new Node(0));
+		dicionario->back()->setCod(cod);
+		aux = c.c_str()[0];
+		dicionario->back()->setC(aux);
+		getline(inFile, str);
+	}
+}
+
+void Huffman::uncompress(){
+	if (testFile()){
+		dictionaryFromFile();
+		uncompressTexto();
+	} else {
+		cout << "uso: huffman.exe parametro arquivoEntrada.txt arquivoSaida.txt" << endl;
+	}
+}
+
+bool Huffman::testFile(){
+	bool a, b, c;
+	a = inFile.is_open();
+	b = inFile_read.is_open();
+	c = outFile.is_open();
+	return a && b && c;
+}
+
+void Huffman::uncompressTexto(){
+	string str = "";
+	string aux;
+	text = "";
+	int i;
+	char c;
+	while (inFile.get(c)){
+		aux = c;
+		str = str + aux;
+		for (i = 0; i < dicionario->size() && (*dicionario)[i]->getCod() != str ; i++);
+		if (i < dicionario->size()){
+			str = "";
+			if ((*dicionario)[i]->getC() != char(0) && (*dicionario)[i]->getC() != '\n'){
+				outFile.put((*dicionario)[i]->getC());
+			} else if ((*dicionario)[i]->getC() != '\n'){
+				outFile.put('\n');
+			}
+		}
+	}
 }
