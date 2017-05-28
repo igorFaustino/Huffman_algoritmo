@@ -17,12 +17,11 @@ public:
 	void uncompress();
 
 private:
-	void makeDicionario();
+	void makeDictionary();
 	void makeTree();
 	void probability();
-	void compressTexto();
+	void Huffman::SaveDictionary();
 	ifstream inFile;
-	ifstream inFile_read;
 	ofstream outFile;
 	vector<Node*>* alfabeto;
 	vector<Node*>* dicionario;

@@ -2,16 +2,19 @@
 
 Huffman::Huffman(string file){
 	inFile.open(file.c_str());
-	inFile_read.open(file.c_str());
 	outFile.open("outFile.txt");
 
 	alfabeto = new vector<Node*>;
-	dicionario = new vector<Node*>;
+	dictionary = new vector<Node*>;
 	tree = new Bt();
+	cout << "estou aqui!" << endl;
 	for (int i = 0; i < 256; i++){
+		// cout << i << " ";
 		alfabeto->push_back(new Node(0));
 		(*alfabeto)[i]->setC(i);
+		cout << alfabeto->back()->getC() << ' ';
 	}
+	cout << "complete";
 }
 
 Huffman::~Huffman(){
@@ -39,23 +42,24 @@ void Huffman::makeTree(){
 	tree->setCod();
 }
 
-void Huffman::makeDicionario(){
+void Huffman::makeDictionary(){
 	tree->catchLeaf(dicionario);
 }
 
 void Huffman::compress(){
 	probability();
 	makeTree();
-	makeDicionario();
-	compressTexto();
+	makeDictionary();
+	for (int i = 0; i < dicionario->size(); i++){
+		(*dicionario)[i]->print();
+	}
 }
 
-void Huffman::compressTexto(){
-	char c;
-	int i;
-	while (inFile_read.get(c)){
-		for (i = 0; (*dicionario)[i]->getC() != c; i++);
-		outFile.write((*dicionario)[i]->getCod().c_str(), (*dicionario)[i]->getCod().size());
+void Huffman::SaveDictionary(){
+	int i=0;
+	while(dicionario){
+			outFile.write((*dicionario)[i]->getCod().c_str(), (*dicionario)[i]->getCod().size());
+			i++;
 	}
-	// outFile.close();
+
 }
