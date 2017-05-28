@@ -56,6 +56,7 @@ void Node::setLeft(Node *node)
 void Node::print(){
 	cout << "Prob: " << this->prob << endl;
 	cout << "c: " << this->c << endl;
+	cout << "code: " << this->cod << endl << endl;
 }
 
 string Node::getCod(){

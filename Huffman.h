@@ -11,15 +11,15 @@
 class Huffman
 {
 public:
-	Huffman(char* file);
+	Huffman(string file);
 	~Huffman();
-	void probability();
-	void makeTree();
-	void makeDicionario();
 	void compress();
 	void uncompress();
 
 private:
+	void makeDicionario();
+	void makeTree();
+	void probability();
 	ifstream inFile;
 	ofstream outFile;
 	vector<Node*>* alfabeto;

@@ -13,7 +13,7 @@ void Bt::insert(vector<Node*>* v){
 		sort(v->begin(), v->end(), compare);
 		n1 = (*v)[0];
 		n2 = (*v)[1];
-		v->erase(v->begin(), v->begin()+1);
+		v->erase(v->begin(), v->begin()+2);
 		x = new Node(n1->getProb() + n2->getProb());
 		x->setLeft(n1);
 		x->setRight(n2);
@@ -23,25 +23,20 @@ void Bt::insert(vector<Node*>* v){
 };
 
 void Bt::setCod(Node *node, string cod){
-    if(!node->getLeft() && node->getRight()){
+    if(!node->getLeft() && !node->getRight()){
     	node->setCod(cod);
     	return;
     }
     if (node->getLeft()){
-        setCod(node->getLeft(), cod + "0");
+        setCod(node->getLeft(), cod + '0');
     }
     if (node->getRight()){
-        setCod(node->getRight(), cod + "1");
+        setCod(node->getRight(), cod + '1');
     }
 }
 
 void Bt::setCod(){
-	if (root->getLeft()){
-        setCod(root, "0");
-    }
-    if (root->getRight()){
-        setCod(root, "1");
-    }
+	setCod(root, "");
 }
 
 bool Bt::compare(Node* a, Node* b){
