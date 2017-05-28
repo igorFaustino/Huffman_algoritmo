@@ -20,7 +20,9 @@ private:
 	void makeDicionario();
 	void makeTree();
 	void probability();
+	void compressTexto();
 	ifstream inFile;
+	ifstream inFile_read;
 	ofstream outFile;
 	vector<Node*>* alfabeto;
 	vector<Node*>* dicionario;
