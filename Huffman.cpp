@@ -51,7 +51,7 @@ void Huffman::compress(){
 		saveDictionary();
 		compressTexto();
 	} else {
-		cout << "uso: huffman.exe parametro arquivoEntrada.txt arquivoSaida.txt" << endl;
+		cout << "uso: huffman.exe -parametro arquivoEntrada.txt arquivoSaida.txt" << endl;
 	}
 }
 
@@ -100,7 +100,7 @@ void Huffman::uncompress(){
 		dictionaryFromFile();
 		uncompressTexto();
 	} else {
-		cout << "uso: huffman.exe parametro arquivoEntrada.txt arquivoSaida.txt" << endl;
+		cout << "uso: huffman.exe -parametro arquivoEntrada.txt arquivoSaida.txt" << endl;
 	}
 }
 
