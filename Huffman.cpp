@@ -1,9 +1,16 @@
 #include "Huffman.h"
 
-Huffman::Huffman(string in, string out){
-	inFile.open(in.c_str());
-	inFile_read.open(in.c_str());
-	outFile.open(out.c_str());
+using namespace std;
+
+Huffman::Huffman(string in, string parametro){
+	if(parametro == "-c"){
+		inFile.open(in.c_str());
+		outFile.open("outFile.bin", ios::binary);
+	}
+	if(parametro == "-d"){
+		inFile.open(in.c_str(), ios::binary);
+		outFile.open("out.txt");
+	}
 	alfabeto = new vector<Node*>;
 	dicionario = new vector<Node*>;
 	tree = new Bt();

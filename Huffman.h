@@ -27,6 +27,7 @@ private:
 	void compressTexto();
 	void uncompressTexto();
 	bool testFile();
+	
 	ifstream inFile;
 	ifstream inFile_read;
 	ofstream outFile;
