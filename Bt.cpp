@@ -44,17 +44,18 @@ bool Bt::compare(Node* a, Node* b){
 }
 
 
-void Bt::catchLeaf(Node *node, vector<Node*>* a){
+void Bt::catchLeaf(Node *node, vector<Data*>* a){
 	if (!node){
 		return;
 	}
 	if(!node->getLeft() && !node->getRight()){
-		a->push_back(node);
+		string aux = node->getCod();
+		a->push_back(new Data(atoi(aux.c_str()), node->getC()));
 	}
 	catchLeaf(node->getLeft(), a);
 	catchLeaf(node->getRight(), a);
 }
 
-void Bt::catchLeaf(vector<Node*>* a){
+void Bt::catchLeaf(vector<Data*>* a){
 	catchLeaf(root, a);
 }

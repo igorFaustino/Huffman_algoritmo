@@ -3,11 +3,13 @@
 #include <vector>
 #include <iostream>
 #include "Node.h"
+#include "Data.h"
 #include "Huffman.h"
 #include "Bt.h"
 #include <fstream>
 #include <stdio.h>
 #include <string>
+#include <sstream>
 
 
 class Huffman
@@ -32,7 +34,7 @@ private:
 	ifstream inFile_read;
 	ofstream outFile;
 	vector<Node*>* alfabeto;
-	vector<Node*>* dicionario;
+	vector<Data*>* dicionario;
 	Bt* tree;
 	string text;
 	

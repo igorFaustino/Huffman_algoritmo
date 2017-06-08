@@ -4,11 +4,16 @@
 class Data
 {
 public:
-	Data();
+	Data(int cod, char c);
 	~Data();
+	int getCod();
+	void setCod(int);
+	char getC();
+	void setC(char);
 
 private:
-	int* vet;
+	int cod;
+	char c;
 	
 };
 
