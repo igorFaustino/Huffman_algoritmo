@@ -9,6 +9,8 @@ Data::Data(int cod, char c){
 	this->c = c;
 }
 
+Data::Data(){
+}
 
 int Data::getCod(){
 	return this->cod;

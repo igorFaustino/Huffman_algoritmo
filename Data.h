@@ -5,6 +5,7 @@ class Data
 {
 public:
 	Data(int cod, char c);
+	Data();
 	~Data();
 	int getCod();
 	void setCod(int);

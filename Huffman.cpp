@@ -9,6 +9,7 @@ Huffman::Huffman(string in, string parametro){
 		outFile.open("outFile.huf", ios::binary);
 	}
 	if(parametro == "-d"){
+		inFile_read.open(in.c_str());
 		inFile.open(in.c_str(), ios::binary);
 		outFile.open("outfile.txt");
 	}
@@ -61,7 +62,7 @@ void Huffman::compress(){
 	} else {
 		cout << "uso: huffman.exe -parametro arquivo.txt" << endl;
 	}
-}
+}	
 
 void Huffman::saveDictionary(){
 	int i=0;
@@ -77,32 +78,39 @@ void Huffman::compressTexto(){
 	string str = "";
 	int i;
 	while (inFile_read.get(c)){
-		for (i = 0; (*dicionario)[i]->getC() != c; i++);
+		for (i = 0; (*dicionario)[i]->getC() != c && i < dicionario->size(); i++);
 		ostringstream convert;
 		convert << (*dicionario)[i]->getCod();
 		string aux = convert.str();
 		str = str + aux;
 	}
-	// cout << str;
-	int aux = 0;
+	unsigned int aux = 0;
 	string cod = "";
+	binario* bin = new binario();
+	int tam = str.size();
+	outFile.write((char*)&tam, sizeof(tam));
 	for (i = 0; i < str.size(); i++){
 		cod = cod + str[i];
-		if (cod.size() >= 10){
-			aux = atoi(cod.c_str());
+		if (cod.size() >= 32){
+			aux = bin->converter_int(cod);
 			outFile.write((char*)&(aux), sizeof(aux));
 			cod = "";
 		}
 	}
 	if (cod.size() != 0){
-			aux = atoi(cod.c_str());
-			outFile.write((char*)&(aux), sizeof(aux));
+		aux = bin->converter_int(cod);
+		outFile.write((char*)&(aux), sizeof(aux));
 	}
-	// outFile.close();
 }
 
 void Huffman::dictionaryFromFile(){
-
+	int tam;
+	inFile.read((char*)&tam, sizeof(tam));
+	for(int i = 0; i < tam; i++){
+		Data* d = new Data();
+		inFile.read((char*)d, sizeof(d));
+		dicionario->push_back(d);
+	}
 }
 
 void Huffman::uncompress(){
@@ -110,7 +118,7 @@ void Huffman::uncompress(){
 		dictionaryFromFile();
 		uncompressTexto();
 	} else {
-		cout << "uso: huffman.exe -parametro arquivoEntrada.txt arquivoSaida.txt" << endl;
+		cout << "uso: huffman.exe -parametro arquivo.txt" << endl;
 	}
 }
 
@@ -122,24 +130,34 @@ bool Huffman::testFile(){
 	return a && b && c;
 }
 
+int Huffman::textFromBin(){
+	int tam;
+	binario* b = new binario;
+	unsigned int aux;
+	text = "";
+	string str;
+	inFile.read((char*)&tam, sizeof(tam));
+	while(inFile.read((char*)&aux, sizeof(aux))){
+		str = b->converter_str(aux);
+		if (str != "\0")
+			text = text + str;
+	}
+	return tam;
+}
+
 void Huffman::uncompressTexto(){
-	// string str = "";
-	// string aux;
-	// text = "";
-	// int i;
-	// char c;
-	// while (inFile.get(c)){
-	// 	aux = c;
-	// 	str = str + aux;
-	// 	// converter int to string
-	// 	for (i = 0; i < dicionario->size() && (*dicionario)[i]->getCod() != str ; i++);
-	// 	if (i < dicionario->size()){
-	// 		str = "";
-	// 		if ((*dicionario)[i]->getC() != char(0) && (*dicionario)[i]->getC() != '\n'){
-	// 			outFile.put((*dicionario)[i]->getC());
-	// 		} else if ((*dicionario)[i]->getC() != '\n'){
-	// 			outFile.put('\n');
-	// 		}
-	// 	}
-	// }
+	int tam = textFromBin();
+	string str = "";
+	for(int i = 0; i < tam; i++){
+		int j;
+		str = str + text[i];
+		for(j = 0; j < dicionario->size() && atoi(str.c_str()) != (*dicionario)[j]->getCod(); j++);
+		if (j < dicionario->size()){
+			str = (*dicionario)[j]->getC();
+			if (str[0] != '\0')
+				outFile.put(str[0]);
+			str = "";
+		}
+
+	}
 }

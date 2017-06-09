@@ -10,6 +10,8 @@
 #include <stdio.h>
 #include <string>
 #include <sstream>
+#include <cstdlib>
+#include "binario.h"
 
 
 class Huffman
@@ -29,6 +31,7 @@ private:
 	void compressTexto();
 	void uncompressTexto();
 	bool testFile();
+	int textFromBin();
 	
 	ifstream inFile;
 	ifstream inFile_read;
