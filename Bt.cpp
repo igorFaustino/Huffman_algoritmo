@@ -50,7 +50,7 @@ void Bt::catchLeaf(Node *node, vector<Data*>* a){
 	}
 	if(!node->getLeft() && !node->getRight()){
 		string aux = node->getCod();
-		a->push_back(new Data(atoi(aux.c_str()), node->getC()));
+		a->push_back(new Data(aux, node->getC()));
 	}
 	catchLeaf(node->getLeft(), a);
 	catchLeaf(node->getRight(), a);
