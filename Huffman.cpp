@@ -69,7 +69,11 @@ void Huffman::saveDictionary(){
 	int tam = dicionario->size();
 	outFile.write((char*)&(tam), sizeof(tam));
 	for(i = 0; i < dicionario->size(); i++){
-		outFile.write((char*)&(*(*dicionario)[i]), sizeof((*dicionario)[i]));
+		outFile.put((*dicionario)[i]->getC());
+		string str = (*dicionario)[i]->getCod();
+		short int len = str.size();
+		outFile.write((char*)&len, sizeof(len));
+		outFile.write(str.c_str(), len);
 	}
 }
 
@@ -98,6 +102,8 @@ void Huffman::compressTexto(){
 		}
 	}
 	if (cod.size() != 0){
+		while(cod.size() != 32)
+			cod = cod + "0";
 		aux = bin->converter_int(cod);
 		outFile.write((char*)&(aux), sizeof(aux));
 	}
@@ -107,9 +113,16 @@ void Huffman::dictionaryFromFile(){
 	int tam;
 	inFile.read((char*)&tam, sizeof(tam));
 	for(int i = 0; i < tam; i++){
-		Data* d = new Data();
-		inFile.read((char*)d, sizeof(d));
-		dicionario->push_back(d);
+		char c;
+		string str;
+		short int len;
+		inFile.get(c);
+		inFile.read((char*)&len, sizeof(len));
+		char* buf = new char[len];
+		inFile.read(buf, len);
+		str = "";
+		str.append(buf, len);
+		dicionario->push_back(new Data(str, c));
 	}
 }
 
@@ -151,7 +164,7 @@ void Huffman::uncompressTexto(){
 	for(int i = 0; i < tam; i++){
 		int j;
 		str = str + text[i];
-		for(j = 0; j < dicionario->size() && atoi(str.c_str()) != (*dicionario)[j]->getCod(); j++);
+		for(j = 0; j < dicionario->size() && (str.c_str()) != (*dicionario)[j]->getCod(); j++);
 		if (j < dicionario->size()){
 			str = (*dicionario)[j]->getC();
 			if (str[0] != '\0')

@@ -1,10 +1,6 @@
 #include "Data.h"
-#include <iostream>
-#include <fstream>
 
-using namespace std;
-
-Data::Data(int cod, char c){
+Data::Data(string cod, char c){
 	this->cod = cod;
 	this->c = c;
 }
@@ -12,11 +8,11 @@ Data::Data(int cod, char c){
 Data::Data(){
 }
 
-int Data::getCod(){
+string Data::getCod(){
 	return this->cod;
 }
 
-void Data::setCod(int value){
+void Data::setCod(string value){
 	this->cod = value;
 }
 

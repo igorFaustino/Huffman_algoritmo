@@ -1,19 +1,24 @@
 #ifndef DATA
 #define DATA 
 
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
 class Data
 {
 public:
-	Data(int cod, char c);
+	Data(string cod, char c);
 	Data();
 	~Data();
-	int getCod();
-	void setCod(int);
+	string getCod();
+	void setCod(string);
 	char getC();
 	void setC(char);
 
 private:
-	int cod;
+	string cod;
 	char c;
 	
 };
