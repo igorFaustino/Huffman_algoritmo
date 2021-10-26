@@ -1,10 +1,10 @@
 # Huffman_algoritmo
 
-g++ src/\* -I include -o huff.exe
+`make`
 
-uso:
-./huff.exe -parametro arquivoEntrada.txt
+how to use:
+`./bin/huff.exe -param in.txt`
 
-parametros:
--c : converter
--d : desconverter
+param:
+-c : compress
+-d : decompress

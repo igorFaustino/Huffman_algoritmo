@@ -3,11 +3,13 @@
 
 using namespace std;
 
+const string HOW_TO_USE = "how to use: huff -param in.txt";
+
 int main(int argc, char const *argv[])
 {
 	if (argc != 3)
 	{
-		cout << "uso: huffman.exe -parametro arquivo.txt" << endl;
+		cout << HOW_TO_USE << endl;
 		return 0;
 	}
 	Huffman *huff = new Huffman(argv[2], argv[1]);
@@ -21,7 +23,7 @@ int main(int argc, char const *argv[])
 	}
 	else
 	{
-		cout << "uso: huffman.exe -parametro arquivo.txt" << endl;
+		cout << HOW_TO_USE << endl;
 	}
 	delete huff;
 	return 0;
