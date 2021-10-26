@@ -3,22 +3,24 @@
 
 using namespace std;
 
-bool compare(Node* a, Node* b){
-	return a->getProb() < b->getProb();
-}
-
 int main(int argc, char const *argv[])
 {
-	if (argc != 3){
+	if (argc != 3)
+	{
 		cout << "uso: huffman.exe -parametro arquivo.txt" << endl;
 		return 0;
 	}
-	Huffman* huff = new Huffman(argv[2], argv[1]);
-	if (string(argv[1]) == "-c"){
+	Huffman *huff = new Huffman(argv[2], argv[1]);
+	if (string(argv[1]) == "-c")
+	{
 		huff->compress();
-	} else if (string(argv[1]) == "-d"){
+	}
+	else if (string(argv[1]) == "-d")
+	{
 		huff->uncompress();
-	} else {
+	}
+	else
+	{
 		cout << "uso: huffman.exe -parametro arquivo.txt" << endl;
 	}
 	delete huff;

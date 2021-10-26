@@ -1,5 +1,5 @@
 #ifndef HUFFMAN
-#define HUFFMAN 
+#define HUFFMAN
 #include <vector>
 #include <iostream>
 #include "Node.h"
@@ -11,8 +11,7 @@
 #include <string>
 #include <sstream>
 #include <cstdlib>
-#include "binario.h"
-
+#include "BinaryHelper.h"
 
 class Huffman
 {
@@ -32,15 +31,14 @@ private:
 	void uncompressTexto();
 	bool testFile();
 	int textFromBin();
-	
+
 	ifstream inFile;
 	ifstream inFile_read;
 	ofstream outFile;
-	vector<Node*>* alfabeto;
-	vector<Data*>* dicionario;
-	Bt* tree;
+	vector<Node *> *alfabeto;
+	vector<Data *> *dicionario;
+	Bt *tree;
 	string text;
-	
 };
 
 #endif
