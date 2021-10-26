@@ -1,10 +1,10 @@
 # Huffman_algoritmo
 
-g++ *.cpp -o huff.exe
+g++ src/\* -I include -o huff.exe
 
 uso:
-./huff.exe -parametro arquivoEntrada.txt arquivoSaida.txt.txt
+./huff.exe -parametro arquivoEntrada.txt
 
 parametros:
 -c : converter
--u : desconverter
+-d : desconverter
